@@ -1,5 +1,6 @@
 body {
   background-color: #352f5b !important;
+  margin: 0;
 }
 .container {
   max-width: 400px;
