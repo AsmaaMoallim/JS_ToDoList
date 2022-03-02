@@ -37,7 +37,7 @@ const filterTodos = (searchKey) => {
     .forEach((item) => item.classList.add("filtered"));
 
   Array.from(todos.children)
-    .filter((item) => item.textContent.includes(searchKey))
+    .filter((item) => item.textContent.toLowerCase().includes(searchKey))
     .forEach((item) => item.classList.remove("filtered"));
 };
 
