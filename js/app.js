@@ -1,6 +1,6 @@
 const addform = document.querySelector(".add");
 const todos = document.querySelector(".todos");
-const searchform = document.querySelector(".search");
+const search = document.querySelector(".search input");
 
 // create li template
 const generateTemplate = (todo) => {
@@ -30,27 +30,21 @@ todos.addEventListener("click", (e) => {
   }
 });
 
+// filter todos
+const filterTodos = (searchKey) => {
+  Array.from(todos.children)
+    .filter((item) => !item.textContent.includes(searchKey))
+    .forEach((item) => item.classList.add("filtered"));
+
+  Array.from(todos.children)
+    .filter((item) => item.textContent.includes(searchKey))
+    .forEach((item) => item.classList.remove("filtered"));
+};
+
 // search
-searchform.addEventListener("submit", (e) => {
+search.addEventListener("keyup", (e) => {
   e.preventDefault();
-  searchKey = searchform.search.value.trim();
 
-  todos.childNodes.forEach((item) => {
-    if (item.tagName == "LI" && !item.textContent.trim().includes(searchKey)) {
-      item.nextSibling.remove();
-      item.remove();
-    }
-  });
-});
-
-searchform.addEventListener("keyup", (e) => {
-  e.preventDefault();
-  searchKey = searchform.search.value.trim();
-
-  todos.childNodes.forEach((item) => {
-    if (item.tagName == "LI" && !item.textContent.trim().includes(searchKey)) {
-      item.nextSibling.remove();
-      item.remove();
-    }
-  });
+  searchKey = search.value.trim();
+  filterTodos(searchKey);
 });
