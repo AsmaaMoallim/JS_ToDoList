@@ -29,3 +29,28 @@ todos.addEventListener("click", (e) => {
     e.target.parentNode.remove();
   }
 });
+
+// search
+searchform.addEventListener("submit", (e) => {
+  e.preventDefault();
+  searchKey = searchform.search.value.trim();
+
+  todos.childNodes.forEach((item) => {
+    if (item.tagName == "LI" && !item.textContent.trim().includes(searchKey)) {
+      item.nextSibling.remove();
+      item.remove();
+    }
+  });
+});
+
+searchform.addEventListener("keyup", (e) => {
+  e.preventDefault();
+  searchKey = searchform.search.value.trim();
+
+  todos.childNodes.forEach((item) => {
+    if (item.tagName == "LI" && !item.textContent.trim().includes(searchKey)) {
+      item.nextSibling.remove();
+      item.remove();
+    }
+  });
+});
